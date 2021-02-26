@@ -20,7 +20,7 @@ char_indices = dict((c, i) for i, c in enumerate(chars))
 indices_char = dict((i, c) for i, c in enumerate(chars))
 
 # cut the text in semi-redundant sequences of maxlen characters
-maxlen = 10
+maxlen = 20
 step = 3
 sentences = []
 next_chars = []
@@ -69,7 +69,7 @@ for iteration in range(1, 60):
 
     start_index = random.randint(0, len(text) - maxlen - 1)
 
-    for diversity in [0.2, 0.5, 1.0, 1.2]:
+    for diversity in [0.1, 0.2, 0.4, 0.7]:
         print()
         print('----- diversity:', diversity)
 
@@ -79,7 +79,7 @@ for iteration in range(1, 60):
         print('----- Generating with seed: '+ sentence +'')
         sys.stdout.write(generated)
 
-        for i in range(30):
+        for i in range(40):
             x = np.zeros((1, maxlen, len(chars)))
             for t, char in enumerate(sentence):
                 x[0, t, char_indices[char]] = 1.
